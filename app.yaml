@@ -1,0 +1,14 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+service: pub-sub
+
+manual_scaling:
+  instances: 1
+
+handlers:
+- url: /.*
+  script: main.app
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: 'backends/credentials.json'

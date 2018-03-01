@@ -1,0 +1,3 @@
+SET HTTPS_PROXY=http://c17709:BNPparibas2018*@ncproxy1:8080
+pip install TwitterApi
+
