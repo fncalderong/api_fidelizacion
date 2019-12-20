@@ -1,6 +1,5 @@
 from sklearn.externals import joblib
 
-
 class BqClient:
     def __init__(self):
         self.client = []
