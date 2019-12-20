@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "credibancoml",
+  "private_key_id": "a1eb0cfa0719d93e8965dd3bda0eedcb7ebb914b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDZ5TQEcHISC/6l\no1r4f9y7EQB/K5dMStzotu/GvX69WOApVedcv3xRU1HExa9LM9ctIU6eIKUZq2Gh\nWytFXSfN0JNvFRIXmWyIK43WUv+SMmgjlBg748/beVDfr2dKLTAFSf9CDh7PNPdj\nPjngT6wXGncoy8TBU69/LNshKmT05cneOioeO3n1tJ7XTiGoe7zhWrJfA0u0dBQk\n4KTlvmuL2WxJgvF3ini7ZgtEqkh0zyNFPzZlG4+PzxvgV1tYk1mPPJlyzA9TjRAB\n+6B+yIVf7g9LjywDDod3/77o2JmFrFWx2fD72xMncdt2PT9NQv2Btp/3Fj6BuCBn\n4BQue87pAgMBAAECggEAOlYdCRs5zw8bDCmiD2ncJNE2etWm2iwo3L0tkN3m8ra6\nvRZcrP4vQG64M6BhgBbPAywpqjg/O5Igv1xzR0zbfUTcVB8mCt9uqT5P6ROrjO6l\n5vCdVFt3qODgACMr2jYi5yeaiYrSQNODcDSWtjFed4kEYg28Da5kC/5sZIK/KLlm\nKt2RdxExRznkJb+cST1Qc2H8m6HZhkTh+f+ms0DzQuEX+ik4o/MJwrdqFApoY+s3\nezJ3R4tXHFdwHcg8GtRaykKJeOCB/N3xa2yzfAaKBrY8NOFbO/qDYEBNDghzIlDK\nYOK7mvip/qACDdft5eSVviBSM07WfK5gpUSZcEqHSQKBgQD3UuHMcTes4ZWoXG/e\nki3BMefObUju19Dtva3OUj896Pcrw9vja1AbBvrKktqxQtMLYBqMpm7yYiHfi5vO\n4ZF/WpV9rwv1MEcugR4UJZPl6Eld37vGU7UMrMULhL3ncVJbimxGDzT3zmAN84uH\naohna7DbqnrPCsleU3vzJwJeBwKBgQDhigkxzvEtzj70Jpk/89G1Sr2fJG/ZI759\nDmD2VyggINJHILMup4fuj18wiVwWkCffbMZQ1PWGvkl2CDdkYnUe4zDYExehfFyj\nLuVTfo5hlimJxyNDLJh9WcBT/swJjSFi27Bd82K3EKw+tCBJaT5e1kqgu9PuhfKt\nmaPZSmovjwKBgQDxGNPTJ389wb7RnCLV1qxRzCOMIQ7a/nnGeISJP7Y01Pi2qjyd\nyswRPNGYTmZwLJNtYGchO1GmaTFaKU9e8peSjaxzFARVJZYOaIH449T0Z2e14le7\nc3hn/bgsjV9O0jKV2C/KcCKTe5Q5pXQcMyb7ooiK6vrDAGHi2QFYvGtbWwKBgQDF\nJOmglimPRocU12CB3Fhkxe42W51BCtOJcLYk3k5+tvHXpqe5kktppf0o6giK2Hth\n+yzmnx/3JgIEoG36221REHozhYzUZWZ8ZZOjhi5i8uVgP6d9IlAw0fEh+sjTWH/k\nb/AcT5DsQDCvprfKM6qHL32QPl6kUoWsZW4pk7h51QKBgQCXGWz9cVd317C8goWS\nJD9IrkJWxlBJtkx3+uwZilmeENA99rqO6+4IpNZy7ZkZf+bJhbmrU9lFjN+sQtLE\nE5bVbxSDMDosq9t39fJMem5C858elE2uZPgiOBEtlNi+hjNQSlIxFOUq5OB3Eaxc\nSsCwpKIais0HdFxoJX7mDrzfkA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "bigquery@credibancoml.iam.gserviceaccount.com",
+  "client_id": "117498187791359980281",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bigquery%40credibancoml.iam.gserviceaccount.com"
+}
