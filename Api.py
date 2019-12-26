@@ -4,6 +4,7 @@ from flask import request
 from backends.Modelo_Calculo import BqClient
 from backends.Modelo_Calculo_Gatos import Gatos
 from backends.Modelo_SuperApp import SUPERAPP
+from backends.Modelo_descriptivo import SUPERAPP_DESCRIPTIVOS
 
 app = FlaskAPI(__name__)
 
@@ -68,6 +69,24 @@ def modelo_gatos():
 def SUPPER_APP():
     print(request.data)
     response = SUPERAPP().datos_totales(request.data)
+    if response == "0":
+        return u"Almenos una tarjeta no tiene 64 caracteres", 400
+    elif response == "1":
+        return u"Los tokens deben ser string 1", 400
+    elif response == "2":
+        return u"No se han ingresado tarjetas", 204
+    elif response == "3":
+        return u"El input no es una lista", 400
+    elif response:
+        return response, 200
+    else:
+        return u"No se encontró información", 404
+
+
+@app.route("/SUPPER_APP_DESCRIPTIVOS/", methods=['POST'])
+def SUPPER_APP_DESCRIPTIVOS():
+    print(request.data)
+    response = SUPERAPP_DESCRIPTIVOS().cosa(request.data)
     if response == "0":
         return u"Almenos una tarjeta no tiene 64 caracteres", 400
     elif response == "1":

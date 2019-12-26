@@ -36,3 +36,4 @@ urllib3==1.25.7
 Werkzeug==0.16.0
 xgboost==0.90
 xlrd==1.2.0
+gunicorn==19.9.0
