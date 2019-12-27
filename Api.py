@@ -77,6 +77,8 @@ def SUPPER_APP():
         return u"No se han ingresado tarjetas", 204
     elif response == "3":
         return u"El input no es una lista", 400
+    elif response == "4":
+        return u"No se encontró información", 404
     elif response:
         return response, 200
     else:
@@ -89,12 +91,20 @@ def SUPPER_APP_DESCRIPTIVOS():
     response = SUPERAPP_DESCRIPTIVOS().cosa(request.data)
     if response == "0":
         return u"Almenos una tarjeta no tiene 64 caracteres", 400
+    elif response == "6":
+        return u"El input de informacion de tarjeta no es una lista", 400
+    elif response == "7":
+        return u"No se ha ingresado 'info_tarjetas'", 249
     elif response == "1":
-        return u"Los tokens deben ser string 1", 400
+        return u"Los tokens deben ser string ", 400
     elif response == "2":
-        return u"No se han ingresado tarjetas", 204
+        return u"No se han ingresado tarjetas", 301
     elif response == "3":
-        return u"El input no es una lista", 400
+        return u"El input de tokens no es una lista", 400
+    elif response == "4":
+        return u"El input de info de tarjeta es desconocido", 400
+    elif response == "5":
+        return u"No se encontró información", 404
     elif response:
         return response, 200
     else:
