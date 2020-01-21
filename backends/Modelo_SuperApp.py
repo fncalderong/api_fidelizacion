@@ -8,16 +8,24 @@ import datetime
 import pytz
 import json
 import hashlib
+import psycopg2
 
 # Modelo Xgboost
 modelo = xgb.Booster({'nthread': 4})  # init model
 modelo.load_model("archivos/xgb_lite.model")  # load data
 
 # Agrego las credenciales
-credentials = service_account.Credentials.from_service_account_file('credenciales.json')
-project_id = 'credibancoml'
+#credentials = service_account.Credentials.from_service_account_file('credenciales.json')
+#project_id = 'credibancoml'
 # Defino el cliente en BigQuery
-client = bigquery.Client(credentials= credentials,project=project_id)
+#client = bigquery.Client(credentials= credentials,project=project_id)
+connection = psycopg2.connect(user = "postgres",
+                                  password = "Fncalderon91G",
+                                  host = "34.70.191.133",
+                                  port = "5432",
+                                  database = "postgres")
+
+#cursor = connection.cursor()
 
 # Defino la función que genera la data para el modelo
 class SUPERAPP:
@@ -54,15 +62,24 @@ class SUPERAPP:
                                 if sum(longitud_dato) == len(tokens):
                                     # ========================= Funcion 1: Hace la consulta en BigQuery
                                     # Hago la consultas
-                                    consulta = 'SELECT *  FROM `credibancoml.Recomienda.Prueba` WHERE NU_TARJETA_SHA256 IN ("' + '","'.join(tuple(tokens)) + '")'
-                                    query_job = client.query(consulta)
+                                    #consulta = 'SELECT *  FROM recomienda  WHERE NU_TARJETA_SHA256 IN ("' + '","'.join(tuple(tokens)) + '")'
+                                    consulta = "SELECT *  FROM recomienda  WHERE nu_tarjeta_sha256 IN ('" + "','".join(tuple(tokens)) + "')"
+                                    #query_job = client.query(consulta)
                                     # Convierto los resultados en pandas data.frame
-                                    DATOS = query_job.to_dataframe()
+                                    #DATOS = query_job.to_dataframe()
+                                    cursor = connection.cursor()
+                                    cursor.execute(consulta)
+                                    DATOS = pd.DataFrame(cursor.fetchall())
                                     if (DATOS.shape[0] != 0):
+
+                                        colnames_1 = [desc[0] for desc in cursor.description]
+                                        colnames = [colum.upper() for colum in colnames_1]
+                                        DATOS.columns = colnames
                                         Top = 5
                                         #DATOS = pd.read_csv("C:/Users/credibanco_ml/Desktop/DATOS.csv")
                                         # ========================= Funcion 2: Transformacion de la tabla
                                         BINES = pd.read_excel("archivos/BINES.xlsx")
+                                        DATOS['BIN'] = DATOS['BIN'].astype(int)
                                         datos = pd.merge(DATOS, BINES, left_on='BIN', right_on='CD_BIN', how='left')
                                         datos['MAESTRO_ELECTRON'] = np.where(datos.NM_PRODUCTO.isin(['MAESTRO', 'ELECTRON']), 1, 0)
                                         datos['ORO'] = np.where(
@@ -164,6 +181,8 @@ class SUPERAPP:
                                         # Se reemplaza None por NA
                                         if sum(datos_tot.dtypes == 'object') >= 1:
                                             datos_tot.fillna(np.nan, inplace=True)
+                                        for col in datos_tot.columns:
+                                            datos_tot[col] = pd.to_numeric(datos_tot[col])
                                         # ========================= Funcion 3: Hace la consulta en BigQuery
                                         Categorias = ['CINE Y TEATRO', 'DISCOTECA Y BARES', 'DROGUERIAS', 'EDS', 'EDUCACION', 'ENTRETENIMIENTO',
                                                       'EVENTOS', 'GIMNASIOS', 'HOGAR', 'MASCOTAS', 'MI ARMARIO', 'OTROS', 'PARQUEADEROS', 'PELUQUERIAS',
