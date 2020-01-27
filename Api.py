@@ -1,6 +1,7 @@
 import os, json, base64, logging
 from flask_api import FlaskAPI
 from flask import request
+from flask import Response
 from backends.Modelo_Calculo import BqClient
 from backends.Modelo_Calculo_Gatos import Gatos
 from backends.Modelo_SuperApp import SUPERAPP
@@ -80,7 +81,7 @@ def SUPPER_APP():
     elif response == "4":
         return u"No se encontró información", 404
     elif response:
-        return response, 200
+        return Response(response, mimetype='application/json'), 200
     else:
         return u"No se encontró información", 404
 
@@ -106,7 +107,7 @@ def SUPPER_APP_DESCRIPTIVOS():
     elif response == "5":
         return u"No se encontró información", 404
     elif response:
-        return response, 200
+        return Response(response, mimetype='application/json'), 200
     else:
         return u"No se encontró información", 404
 

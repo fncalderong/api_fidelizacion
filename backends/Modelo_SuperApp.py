@@ -81,6 +81,7 @@ class SUPERAPP:
                                         BINES = pd.read_excel("archivos/BINES.xlsx")
                                         DATOS['BIN'] = DATOS['BIN'].astype(int)
                                         datos = pd.merge(DATOS, BINES, left_on='BIN', right_on='CD_BIN', how='left')
+                                        datos['FECHA'] = Fecha
                                         datos['MAESTRO_ELECTRON'] = np.where(datos.NM_PRODUCTO.isin(['MAESTRO', 'ELECTRON']), 1, 0)
                                         datos['ORO'] = np.where(
                                             np.logical_or(datos['NM_PRODUCTO'].str.find('GOLD') != -1, datos['NM_PRODUCTO'].str.find('ORO') != -1), 1,0)
@@ -163,8 +164,13 @@ class SUPERAPP:
                                         ##########
                                         datos['DIA_CALC'] = pd.DatetimeIndex(pd.to_datetime(datos['FECHA'].astype(str), format='%Y%m%d')).day
                                         datos['MES_CALC'] = pd.DatetimeIndex(pd.to_datetime(datos['FECHA'].astype(str), format='%Y%m%d')).month
+                                        # Se agrega la zona horaria de Colombia
+                                        ct = datetime.datetime.now(tz=tz)
+                                        HORA = ct.strftime('%H')
+                                        # Se ingresa la hora del sistema en el modelo
+                                        datos['HORA_Y3'] = int(HORA)
                                         ##########
-                                        datos_tot = datos[["FECHA", "CAT_FREQ_EDS", "CAT_FREQ_RESTAURANTES", "EDS", "RESTAURANTES",
+                                        datos_tot = datos[["HORA_Y3", "CAT_FREQ_EDS", "CAT_FREQ_RESTAURANTES", "EDS", "RESTAURANTES",
                                                            "FREQ_DESP_UC_SUPERMERCADOS", "DROGUERIAS", "SUPERMERCADOS",
                                                            "PRO_MENS_COMPRAS", "MI_ARMARIO", "PRO_MENS_ESTBL", "CAT_FREQ_MI_ARMARIO",
                                                            "SUPER_APP_UC_SUPERMERCADOS", "CAT_FREQ_SUPERMERCADOS", "DIF_TIEMPO_UC",
@@ -173,14 +179,8 @@ class SUPERAPP:
                                                            "SUPERMERCADOS_DIA_3", "ANTIGUEDAD", "DIF_TIEMPO_UPC", "SUPERMERCADOS_DIA_6",
                                                            "SUPERMERCADOS_DIA_2", "SUPERMERCADOS_DIA_1", "SUPERMERCADOS_DIA_5",
                                                            "RESTAURANTES_DIA_3"]]
-                                        # Se agrega la zona horaria de Colombia
-                                        ct = datetime.datetime.now(tz=tz)
-                                        HORA = ct.strftime('%H')
-                                        # Se ingresa la hora del sistema en el modelo
-                                        datos_tot.loc[:, ('HORA_Y3')] = int(HORA)
                                         # Se reemplaza None por NA
-                                        if sum(datos_tot.dtypes == 'object') >= 1:
-                                            datos_tot.fillna(np.nan, inplace=True)
+                                        datos_tot.fillna(value=pd.np.nan, inplace=True)
                                         for col in datos_tot.columns:
                                             datos_tot[col] = pd.to_numeric(datos_tot[col])
                                         # ========================= Funcion 3: Hace la consulta en BigQuery
