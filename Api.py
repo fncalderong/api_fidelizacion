@@ -88,7 +88,6 @@ def SUPPER_APP():
 
 @app.route("/SUPPER_APP_DESCRIPTIVOS/", methods=['POST'])
 def SUPPER_APP_DESCRIPTIVOS():
-    print(request.data)
     response = SUPERAPP_DESCRIPTIVOS().cosa(request.data)
     if response == "0":
         return u"Almenos una tarjeta no tiene 64 caracteres", 400

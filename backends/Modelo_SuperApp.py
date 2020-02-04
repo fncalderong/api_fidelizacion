@@ -21,7 +21,7 @@ modelo.load_model("archivos/xgb_lite.model")  # load data
 #client = bigquery.Client(credentials= credentials,project=project_id)
 connection = psycopg2.connect(user = "postgres",
                                   password = "Fncalderon91G",
-                                  host = "34.70.191.133",
+                                  host = "35.232.151.83",
                                   port = "5432",
                                   database = "postgres")
 
@@ -231,5 +231,4 @@ class SUPERAPP:
                 else: respuesta = "5"
             else: respuesta = "6"
         else: respuesta = "7"
-        print(respuesta)
         return(respuesta)
